@@ -5,18 +5,27 @@ business progress. Built entirely in Rust with [egui](https://github.com/emilk/e
 
 ## Download
 
-Prebuilt **universal macOS** builds (Apple Silicon + Intel) are published on the
-[Releases page](https://github.com/moulitholusuri/crustom/releases/latest). Download the
-latest `Crustom-*-macOS-universal.zip`, unzip it and open `Crustom.app`.
+Prebuilt builds are published on the
+[Releases page](https://github.com/moulitholusuri/crustom/releases/latest):
 
-The app is ad-hoc signed for local use. If macOS warns about the developer, right-click the
-app and choose **Open** once.
+- **macOS universal** (Apple Silicon + Intel): `Crustom-*-macOS-universal.zip`
+- **Windows x64**: `Crustom-*-Windows-x64.zip`
+
+Download the ZIP for your platform, unzip it and run `Crustom.app` (macOS) or
+`crustom.exe` (Windows).
+
+The macOS app is ad-hoc signed for local use. If macOS warns about the developer,
+right-click the app and choose **Open** once. The Windows executable is unsigned, so
+SmartScreen may ask for confirmation on first launch.
+
+Windows supports billing, imports, notes, exports, analytics and Fast2SMS notifications.
+The Mac Messages link and `.app` packaging are macOS-only.
 
 [![CI](https://github.com/moulitholusuri/crustom/actions/workflows/ci.yml/badge.svg)](https://github.com/moulitholusuri/crustom/actions/workflows/ci.yml)
 
 > **Status: Phase 7 of 7 — release.**
 > Username-only access, multi-format imports, bill management, People notes, SMS/Messages
-> alerts, analytics, settings and macOS app packaging are complete. Version 0.13.0.
+> alerts, analytics, settings and macOS/Windows packaging are complete. Version 0.14.0.
 
 ## What is in place
 
@@ -147,6 +156,15 @@ open dist/Crustom.app
 The Rust packaging tool builds the release binary, writes a complete `.app` bundle with
 `Contents/Info.plist`, the Crustom icon and the executable, then ad-hoc signs it. The
 bundle is placed at `dist/Crustom.app`. No Python or shell build scripts are required.
+
+### Build a Windows executable
+
+```powershell
+cargo build --release --bin crustom
+target\release\crustom.exe
+```
+
+The release workflow also publishes a ready-to-run Windows x64 ZIP on the Releases page.
 
 ### Data location
 

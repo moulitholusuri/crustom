@@ -827,7 +827,7 @@ pub fn show(
                 ui.vertical(|ui| {
                     ui.spacing_mut().item_spacing.y = 2.0;
                     ui.label(
-                        RichText::new("Crustom v0.13.0")
+                        RichText::new("Crustom v0.14.0")
                             .size(11.5)
                             .strong()
                             .color(theme::text()),

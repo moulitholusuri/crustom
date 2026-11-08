@@ -228,7 +228,7 @@ impl eframe::App for CrustomApp {
 
                 ui.with_layout(Layout::bottom_up(Align::Min), |ui| {
                     ui.label(
-                        RichText::new("v0.13.0  ·  Phase 7")
+                        RichText::new("v0.14.0  ·  Phase 7")
                             .size(10.5)
                             .color(theme::faint()),
                     );

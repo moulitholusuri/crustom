@@ -1,4 +1,4 @@
-name: Release macOS app
+name: Release
 
 on:
   push:
@@ -8,7 +8,7 @@ permissions:
   contents: write
 
 jobs:
-  release:
+  macos:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v4
@@ -36,8 +36,49 @@ jobs:
             dist/Crustom.app \
             "Crustom-${VERSION}-macOS-universal.zip"
 
+      - uses: actions/upload-artifact@v4
+        with:
+          name: macos-release
+          path: Crustom-*-macOS-universal.zip
+          if-no-files-found: error
+
+  windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+
+      - name: Build Windows executable
+        run: cargo build --release --bin crustom
+
+      - name: Package Windows build
+        shell: powershell
+        run: |
+          $version = $env:GITHUB_REF_NAME -replace '^v', ''
+          New-Item -ItemType Directory -Force -Path package | Out-Null
+          Copy-Item target/release/crustom.exe package/
+          Copy-Item README.md package/
+          Copy-Item LICENSE package/
+          Compress-Archive -Path package/* -DestinationPath "Crustom-$version-Windows-x64.zip"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: windows-release
+          path: Crustom-*-Windows-x64.zip
+          if-no-files-found: error
+
+  publish:
+    needs: [macos, windows]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: "*-release"
+          merge-multiple: true
+          path: release-assets
       - name: Publish release
         uses: softprops/action-gh-release@v2
         with:
-          files: Crustom-*-macOS-universal.zip
+          files: release-assets/*.zip
           generate_release_notes: true
