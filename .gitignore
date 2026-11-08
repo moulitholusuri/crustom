@@ -1,0 +1,9 @@
+/target
+/dist
+.DS_Store
+.cargo/config.toml
+*.db
+*.db-wal
+*.db-shm
+*.db.bak*
+.env

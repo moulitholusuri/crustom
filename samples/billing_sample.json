@@ -1,0 +1,74 @@
+[
+  {
+    "Billing Document": "91000001",
+    "Billing Date": "2026-01-20",
+    "Sold-to Party": "Northwind Traders",
+    "Net Value": 8450.00,
+    "Document Currency": "INR",
+    "Due Date": "2026-02-19",
+    "Status": "Paid"
+  },
+  {
+    "Billing Document": "91000002",
+    "Billing Date": "2026-02-04",
+    "Sold-to Party": "Müller & Söhne GmbH",
+    "Net Value": 12350.75,
+    "Document Currency": "INR",
+    "Due Date": "2026-03-06",
+    "Status": "Paid"
+  },
+  {
+    "Billing Document": "91000003",
+    "Billing Date": "2026-02-26",
+    "Sold-to Party": "Orchid Logistics",
+    "Net Value": 6320.40,
+    "Document Currency": "INR",
+    "Due Date": "2026-03-28",
+    "Status": "Open"
+  },
+  {
+    "Billing Document": "91000004",
+    "Billing Date": "2026-03-18",
+    "Sold-to Party": "Aster Analytics",
+    "Net Value": 9875.00,
+    "Document Currency": "INR",
+    "Due Date": "2026-04-17",
+    "Status": "Open"
+  },
+  {
+    "Billing Document": "91000005",
+    "Billing Date": "2026-04-02",
+    "Sold-to Party": "Vertex Components",
+    "Net Value": 17420.60,
+    "Document Currency": "INR",
+    "Due Date": "2026-05-02",
+    "Status": "Overdue"
+  },
+  {
+    "Billing Document": "91000006",
+    "Billing Date": "2026-04-21",
+    "Sold-to Party": "Bluepeak Retail",
+    "Net Value": 5540.00,
+    "Document Currency": "INR",
+    "Due Date": "2026-05-21",
+    "Status": "Paid"
+  },
+  {
+    "Billing Document": "91000007",
+    "Billing Date": "2026-05-09",
+    "Sold-to Party": "Helios Manufacturing",
+    "Net Value": 21800.00,
+    "Document Currency": "INR",
+    "Due Date": "2026-06-08",
+    "Status": "Open"
+  },
+  {
+    "Billing Document": "91000008",
+    "Billing Date": "2026-05-27",
+    "Sold-to Party": "Ridgeway Foods",
+    "Net Value": 4190.95,
+    "Document Currency": "INR",
+    "Due Date": "2026-06-26",
+    "Status": "Paid"
+  }
+]

@@ -1,0 +1,43 @@
+name: Release macOS app
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: aarch64-apple-darwin,x86_64-apple-darwin
+      - uses: Swatinem/rust-cache@v2
+
+      - name: Build universal binary
+        run: |
+          cargo build --release --bin crustom --target aarch64-apple-darwin
+          cargo build --release --bin crustom --target x86_64-apple-darwin
+          mkdir -p target/release
+          lipo -create \
+            target/aarch64-apple-darwin/release/crustom \
+            target/x86_64-apple-darwin/release/crustom \
+            -output target/release/crustom
+          lipo -info target/release/crustom
+
+      - name: Package app
+        run: |
+          VERSION="${GITHUB_REF_NAME#v}"
+          CRUSTOM_SKIP_BUILD=1 cargo run --release --bin package-macos
+          ditto -c -k --sequesterRsrc --keepParent \
+            dist/Crustom.app \
+            "Crustom-${VERSION}-macOS-universal.zip"
+
+      - name: Publish release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: Crustom-*-macOS-universal.zip
+          generate_release_notes: true
